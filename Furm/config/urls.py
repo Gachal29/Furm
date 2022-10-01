@@ -9,7 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("login/", Login.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
-    # path("", "apps.move.urls"),
+    path("", include("apps.move.urls")),
 ]
 
 if settings.DEBUG:

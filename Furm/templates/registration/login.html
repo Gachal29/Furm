@@ -1,1 +1,17 @@
 {% extends 'base.html' %}
+
+{% block main %}
+<form method="post">{% csrf_token %}
+    <p>
+        <label>{{form.username.label}}</label>
+    </p>
+    <p>{{form.username}}</p>
+
+    <p>
+        <label>{{form.password.label}}</label>
+    </p>
+    <p>{{form.password}}</p>
+
+    <button type="submit">ログイン</button>
+</form>
+{% endblock %}
