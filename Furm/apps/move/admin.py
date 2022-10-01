@@ -1,3 +1,5 @@
 from django.contrib import admin
+from apps.move.models import Arrangement
 
-# Register your models here.
+
+admin.site.register(Arrangement)
