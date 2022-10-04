@@ -24,7 +24,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.move"
+    "rest_framework",
+    "widget_tweaks",
+    "apps.move",
 ]
 
 MIDDLEWARE = [
@@ -36,6 +38,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",)
+}
 
 ROOT_URLCONF = "config.urls"
 
@@ -88,6 +94,8 @@ STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     ("assets", BASE_DIR / "frontend/assets"),
+    ("js", BASE_DIR / "js"),
+    ("media", BASE_DIR / "media"),
 ]
 
 LOGIN_URL = "/login/"
@@ -96,6 +104,6 @@ LOGOUT_REDIRECT_URL = "/login/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if DEBUG:
-    INSTALLED_APPS.append("debug_toolbar")
-    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
+# if DEBUG:
+#     INSTALLED_APPS.append("debug_toolbar")
+#     MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")

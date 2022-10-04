@@ -1,1 +1,4 @@
-django-debug-toolbar
+django-debug-toolbardjango-debug-toolbar
+flake8
+black
+isort

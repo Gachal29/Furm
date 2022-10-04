@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<h3 class="text-4xl">家具を動かす</h3>
+<a class="my-2 text-lg flex" href="{% url 'move:move_settings' %}">
+    <img class="w-4 mx-2" src="{% static 'media/icons/double-left.png' %}">
+    戻る
+</a>
+
+<div class="text-center my-4">
+    <select id="furniture_select" name="furniture" class="mr-4 w-48 h-8 text-2xl text-center">
+        <option value="bed">ベッド</option>
+    </select>
+    <button onclick="connect_toio()" class="btn text-xl">接続</button>
+
+    <div id="mat_canvas" class="my-4">
+    </div>
+    
+    <button class="mb-2 btn w-48">家具を動かす</button>
+    <button class="mt-2 btn w-48">配置を保存する</button>
+</div>
+{% endblock %}
+
+{% block loadjs %}
+<script src="{% static 'js/lib/p5.min.js' %}"></script>
+<script src="{% static 'js/lib/toio-browser-1.0.0.js' %}"></script>
+<script src="{% static 'js/connect_toio.js' %}"></script>
+<!-- <script src="{% static 'js/move_toio.js' %}"></script> -->
+<script src="{% static 'js/view.js' %}"></script>
+{% endblock %}

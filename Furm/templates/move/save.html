@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<h3 class="text-4xl">配置保存一覧</h3>
+<a class="my-2 text-lg flex" href="{% url 'move:top' %}">
+    <img class="w-4 mx-2" src="{% static 'media/icons/double-left.png' %}">
+    戻る
+</a>
+
+<table class="my-4 text-center text-2xl table w-full">
+    <thead>
+        <th></th>
+        <th>家具</th>
+        <th>X座標</th>
+        <th>Y座標</th>
+    </thead>
+    <tbody>
+        <tr class="hover">
+            <td>1</td>
+            <td>ベッド</td>
+            <td>360</td>
+            <td>360</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('furniture', models.CharField(max_length=150, verbose_name='家具')),
                 ('x', models.IntegerField(verbose_name='X座標')),
                 ('y', models.IntegerField(verbose_name='Y座標')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': '家具配置',
