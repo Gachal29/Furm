@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from .models import Furniture
 from .forms import SettingsForm
 
 
@@ -20,24 +21,20 @@ class SettingsView(LoginRequiredMixin, TemplateView):
         return context
 
     def post(self, request):
-        move_settings = {
-            "width": request.POST.get("width"),
-            "height": request.POST.get("height"),
-            "mat_num": request.POST.get("mat_num"),
-        }
-        request.session["move_settings"] = move_settings
         return redirect(reverse("move:move"))
 
 
 class MoveView(LoginRequiredMixin, TemplateView):
     template_name = "move/move.html"
 
-    def get(self, request, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        move_settings = request.session.get("move_settings")
+        move_settings = self.request.session.get("move_settings")
         
-        return render(request, self.template_name, context)
+        furnitures = Furniture.objects.filter(user=self.request.user)
+        context["furnitures"] = furnitures
 
+        return context
 
 class SaveView(LoginRequiredMixin, TemplateView):
     template_name = "move/save.html"

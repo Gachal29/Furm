@@ -11,9 +11,9 @@ class FurnitureViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-        furniture_id = self.request.GET.get("furniture_id")
+        print(self.request)
 
         return Furniture.objects.filter(
             user = user,
-            name = furniture_id
+            arrangemented = True
         )

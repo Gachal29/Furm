@@ -10,7 +10,7 @@
 </a>
 <p class="my-4 text-2xl">部屋の間取り情報を入力してください。</p>
 
-<form method="post" class="text-center">{% csrf_token %}
+<form method="post" id="settings_form" class="text-center">{% csrf_token %}
     <p class="my-4">
         <label class="text-xl">{{settings_form.width.label}}</label>
         {{settings_form.width|add_class:"w-48 h-8 text-2xl text-center"}}
@@ -26,6 +26,10 @@
         {{settings_form.mat_num|add_class:"w-48 h-8 text-2xl text-center"}}
         <span>畳</span>
     </p>
-    <button class="btn w-48" type="submit">設定</button>
+    <button class="btn w-48" type="submit" onclick="save_settings()">設定</button>
 </form>
+{% endblock %}
+
+{% block loadjs %}
+<script src="{% static 'js/save_settings.js' %}"></script>
 {% endblock %}

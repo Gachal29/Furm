@@ -12,15 +12,26 @@ class Furniture(models.Model):
     height = models.IntegerField(verbose_name = "縦幅")
     image_path = models.URLField(
         verbose_name = "画像ファイル",
-        # max_length = 150
     )
+    arrangemented = models.BooleanField(
+        verbose_name = "設置済み",
+        default = True
+    )
+
 
     class Meta:
         verbose_name = "家具"
         verbose_name_plural = "家具"
 
+        constraints = [
+            models.UniqueConstraint(
+                fields = ["user", "name"],
+                name="furniture_unique"
+            )
+        ]
+
     def __str__(self):
-        return f"id:{self.id}, name:{self.name}"
+        return f"id:{self.id}, user:{self.user}, name:{self.name}"
 
 
 class Arrangement(models.Model):
