@@ -1,78 +1,41 @@
-// toioと接続する
-let cube = null;
-let cubeX = null;
-let cubeY = null;
-let cubeAngle = null;
-const connectCube = async () => {
-  console.log("connecting...");
-  cube = await new toio.scanner.NearestScanner().start();
-
-  try {
-    await cube.connect();
-    console.log("connected!");
-  }catch(error) {
-    console.log("connecting error:", error);
-  }
-
-  const connectBtnElem = document.querySelector("#connect");
-  connectBtnElem.remove();
-
-  cube.on("id:position-id", info => {
-    cubeX = info.x;
-    cubeY = info.y;
-    cubeAngle = info.angle;
-  });
-  cube.on('id:position-id-missed', () => {
-    cubeX = null;
-    cubeY = null;
-  });
-
-  start = true;
-  detectionId = false;
-  setRoom();
-  viewCubeObj();
-  createBtns();
-  detectionId = true;
-}
 
 // toioを動かす
-let speed = 0;
-let relAngle = 0;
-let cubeMoveAngleStatus = false;
-const moveCubeAngle = async () => {
-  cubeMoveAngleStatus = true;
+let speed = 0
+let rel_angle = 0
+// let destination_sensor_x = null
+// let destination_sensor_y = null
+const move_cube_angle = async () => {
+  action = "move_cube_angle"
 
-  const diffX = cubeObjX - cubeX;
-  const diffY = cubeObjY - cubeY;
+  get_destination_sensor_coordinate()
 
-  console.log("diffX:", diffX, "diffY:", diffY);
+  const diff_x = destination_sensor_x - cube_x
+  const diff_y = destination_sensor_y - cube_y
 
-  relAngle = Math.atan2(diffY, diffX) * 180 / Math.PI;
-  relAngle = (relAngle + 360) % 360;
-  console.log("cubeAngle:",cubeAngle);
-  console.log("relAngle:", relAngle);
+  rel_angle = Math.atan2(diff_y, diff_x) * 180 / Math.PI
+  rel_angle = (rel_angle + 360) % 360
 
-  speed = 10;
-  if(relAngle < 180) {
-    await cube.move(speed, speed * -1, 0);
+  speed = 10
+  if(rel_angle < 180) {
+    await cube.move(speed, speed * -1, 0)
   }else{
-    await cube.move(speed * -1, speed, 0);
+    await cube.move(speed * -1, speed, 0)
   }
 }
 
-let cubeMoveStatus = false;
-const moveCube = async () => {
-  cubeMoveStatus = true;
-  // 目的地まで移動
-  speed = 50;
-  await cube.move(speed, speed, 0);
+const move_cube_destination = async () => {
+  action = "move_cube_destination"
+
+  speed = 15
+  await cube.move(speed, speed, 0)
 }
 
-let detectionId = true;
-const detectionCube = async () => {
-  detectionId = false;
-  cubeObjX = cubeX;
-  cubeObjY = cubeY;
-  viewCubeObj();
-  detectionId = true;
+let destination_sensor_x = null
+let destination_sensor_y = null
+function get_destination_sensor_coordinate () {
+  let furniture_sensor_x = furniture_x + (furniture_w / 2) + mat_start_x
+  let furniture_sensor_y = furniture_y + (furniture_h / 2) + mat_start_y
+
+  destination_sensor_x = furniture_sensor_x / factor
+  destination_sensor_y = furniture_sensor_y / factor
 }

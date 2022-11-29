@@ -19,7 +19,7 @@
     <div id="mat_canvas" class="my-4">
     </div>
     
-    <button onclick="" class="mb-2 btn w-48">家具を動かす</button>
+    <button onclick="move_cube_angle()" class="mb-2 btn w-48">家具を動かす</button>
     <button onclick="" class="mt-2 btn w-48">配置を保存する</button>
 </div>
 {% endblock %}
@@ -29,5 +29,5 @@
 <script src="{% static 'js/lib/toio-browser-1.0.0.js' %}"></script>
 <script src="{% static 'js/connect_toio.js' %}"></script>
 <script src="{% static 'js/view.js' %}"></script>
-<!-- <script src="{% static 'js/move_toio.js' %}"></script> -->
+<script src="{% static 'js/move_toio.js' %}"></script>
 {% endblock %}

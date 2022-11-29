@@ -1,6 +1,3 @@
-const cube_w = 31.8
-const cube_h = 31.8
-
 let cube = null
 let cube_x = null
 let cube_y = null
@@ -19,6 +16,10 @@ const connect_toio = async () => {
         console.log("connecting error:", error)
     }
 
+    cube_on()
+}
+
+function cube_on() {
     // toioの座標を取得する
     cube.on("id:position-id", info => {
         cube_x = info.x
@@ -37,7 +38,6 @@ const connect_toio = async () => {
 function select_furniture () {
     const select_furniture_elem = document.getElementById("select_furniture")
     move_furniture = select_furniture_elem.value
-    console.log(move_furniture)
 
     furniture_w = factor * one_meter * furnitures[move_furniture]["width"]
     furniture_h = factor * one_meter * furnitures[move_furniture]["height"]
