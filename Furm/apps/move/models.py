@@ -37,10 +37,10 @@ class Furniture(models.Model):
 class Arrangement(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     furniture = models.ForeignKey(Furniture, on_delete=models.CASCADE)
-    x = models.IntegerField(
+    x = models.FloatField(
         verbose_name = "X座標"
     )
-    y = models.IntegerField(
+    y = models.FloatField(
         verbose_name = "Y座標"
     )
 

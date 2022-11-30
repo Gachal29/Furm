@@ -16,12 +16,14 @@
         <th>Y座標</th>
     </thead>
     <tbody>
+        {% for arrangement in arrangements %}
         <tr class="hover">
-            <td>1</td>
-            <td>ベッド</td>
-            <td>360</td>
-            <td>360</td>
+            <td>{{arrangement.id}}</td>
+            <td>{{arrangement.furniture.name}}</td>
+            <td>{{arrangement.x|floatformat:0}}</td>
+            <td>{{arrangement.y|floatformat:0}}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}
