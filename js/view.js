@@ -49,6 +49,8 @@ function draw () {
     if (move_furniture && !furniture_view) {
         get_furniture_x()
         get_furniture_y()
+
+        dom_furniture_index()
         furniture_view = true
     }
 
@@ -66,16 +68,16 @@ function draw () {
     }
 
     // cubeの制御
-    const angle_err = 5
+    const angle_dead = 5
     if (action == "move_cube_angle") {
-        if (cube_angle >= rel_angle-angle_err && cube_angle <= rel_angle+angle_err) {
+        if (cube_angle >= rel_angle-angle_dead && cube_angle <= rel_angle+angle_dead) {
             move_cube_destination()
         }
     }
 
-    const coordinate_err = 30
+    const index_dead = 50
     if (action == "move_cube_destination") {
-        if (cube_x >= destination_sensor_x-coordinate_err && cube_x <= destination_sensor_x+coordinate_err && cube_y >= destination_sensor_y-coordinate_err && cube_y <= destination_sensor_y+coordinate_err) {
+        if (cube_x >= destination_sensor_x-index_dead && cube_x <= destination_sensor_x+index_dead && cube_y >= destination_sensor_y-index_dead && cube_y <= destination_sensor_y+index_dead) {
             cube.stop()
             action = null
             furniture_view = false
@@ -99,4 +101,14 @@ function get_furniture_y () {
     }
 
     furniture_y = (y * factor) - (furniture_h / 2) - mat_start_y
+}
+
+function dom_furniture_index () {
+    const furniture_id_elem = document.getElementById("furniture_id")
+    const furniture_x_elem = document.getElementById("furniture_x")
+    const furniture_y_elem = document.getElementById("furniture_y")
+
+    furniture_id_elem.value = move_furniture
+    furniture_x_elem.value = furniture_x
+    furniture_y_elem.value = furniture_y
 }
