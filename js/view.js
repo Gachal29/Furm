@@ -51,11 +51,10 @@ function draw () {
         get_furniture_y()
 
         dom_furniture_index()
-        furniture_view = true
     }
 
     // 家具配置の入力
-    if (mouseIsPressed && !action) {
+    if (mouseIsPressed && !action && furniture_view) {
         if ((mouseX > furniture_w/2 && mouseX < canvas_size_w-furniture_w/2) && (mouseY > furniture_h/2 && mouseY < canvas_size_h-furniture_h/2)) {
             furniture_x = mouseX - (furniture_w / 2)
             furniture_y = mouseY - (furniture_h / 2)
@@ -65,6 +64,10 @@ function draw () {
     // 家具配置の出力
     if (move_furniture) {
         image(furniture_images[move_furniture], furniture_x, furniture_y, furniture_w, furniture_h)
+        
+        if (!furniture_view) {
+            furniture_view = true
+        }
     }
 
     // cubeの制御
@@ -86,18 +89,22 @@ function draw () {
 }
 
 function get_furniture_x () {
-    let x = mat_start_x + (furniture_w / 2)
+    let x = null
     if (cube_x) {
         x = cube_x
+    }else {
+        x = (sessionStorage.getItem("room_width") + 45) / 2
     }
 
     furniture_x = (x * factor) - (furniture_w / 2) - mat_start_x
 }
 
 function get_furniture_y () {
-    let y = mat_start_y + (furniture_h / 2)
+    let y = null
     if (cube_y) {
         y = cube_y
+    } else {
+        y = (sessionStorage.getItem("room_height") + 45) / 2
     }
 
     furniture_y = (y * factor) - (furniture_h / 2) - mat_start_y

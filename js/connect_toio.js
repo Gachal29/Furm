@@ -10,13 +10,14 @@ const connect_toio = async () => {
     // toioと接続する
     try {
         await cube.connect()
-        select_furniture()
         console.log("connected!")
     }catch(error) {
         console.log("connecting error:", error)
     }
 
     cube_on()
+
+    setTimeout( () => {select_furniture()}, 500)
 }
 
 function cube_on() {
