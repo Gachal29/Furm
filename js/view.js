@@ -3,8 +3,13 @@ let furnitures = {
     "1": {
         "width": 1,
         "height": 2,
-        "image_path": "http://127.0.0.1:8000/static/media/furnitures/bed.png"
-    }
+        "image_path": "../static/media/furnitures/bed.png"
+    },
+	"2": {
+		"width": 2,
+		"height": 1,
+		"image_path": "../static/media/furnitures/table.png"
+	}
 }
 
 let furniture_images = {}

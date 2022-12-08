@@ -40,6 +40,6 @@ function select_furniture () {
     const select_furniture_elem = document.getElementById("select_furniture")
     move_furniture = select_furniture_elem.value
 
-    furniture_w = factor * one_meter * furnitures[move_furniture]["width"]
-    furniture_h = factor * one_meter * furnitures[move_furniture]["height"]
+    furniture_w = one_meter * furnitures[move_furniture]["width"]
+    furniture_h = one_meter * furnitures[move_furniture]["height"]
 }

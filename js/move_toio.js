@@ -2,12 +2,10 @@
 // toioを動かす
 let speed = 0
 let rel_angle = 0
-// let destination_sensor_x = null
-// let destination_sensor_y = null
 const move_cube_angle = async () => {
   action = "move_cube_angle"
 
-  get_destination_sensor_coordinate()
+  get_destination_sensor_index()
 
   const diff_x = destination_sensor_x - cube_x
   const diff_y = destination_sensor_y - cube_y
@@ -32,7 +30,7 @@ const move_cube_destination = async () => {
 
 let destination_sensor_x = null
 let destination_sensor_y = null
-function get_destination_sensor_coordinate () {
+function get_destination_sensor_index () {
   let furniture_sensor_x = furniture_x + (furniture_w / 2) + mat_start_x
   let furniture_sensor_y = furniture_y + (furniture_h / 2) + mat_start_y
 
